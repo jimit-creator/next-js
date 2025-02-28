@@ -1,0 +1,11 @@
+@url = http://localhost:3000/api
+@token = 
+
+### Login 
+POST {{url}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "adminpass"
+}
