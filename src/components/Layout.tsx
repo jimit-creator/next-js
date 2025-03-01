@@ -12,20 +12,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-
-
   return (
-     <div className="flex h-screen overflow-y-hidden bg-white">
-      {/* Sidebar - 20% width */}
-      
-        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-    
-      
-      {/* Main content - 80% width */}
+    <div className="flex h-screen overflow-y-hidden bg-white">
+      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="flex flex-col flex-1 h-full overflow-hidden">
-        {/* Header */}
         <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto p-8">
+        <main className="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
           {children}
         </main>
         <Footer />
