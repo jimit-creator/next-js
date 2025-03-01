@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import Pagination from '@/components/Pagination';
+import debounce from 'lodash/debounce'; // Import debounce from lodash
 
 type User = {
     id: number;
@@ -46,7 +47,11 @@ const UserList = () => {
     const router = useRouter();
 
     useEffect(() => {
-        fetchUsers();
+        const debouncedFetchUsers = debounce(fetchUsers, 300); // Use debounce
+        debouncedFetchUsers();
+        return () => {
+            debouncedFetchUsers.cancel(); // Cleanup on unmount
+        };
     }, [search, sort, order, pagination.page, pagination.limit]);
 
     const fetchUsers = async () => {
@@ -172,12 +177,12 @@ const UserList = () => {
                     </div>
                     
                     <Pagination
-                    currentPage={pagination.page}
-                    totalPages={pagination.totalPages}
-                    onPageChange={handlePageChange}
-                    hasNextPage={pagination.hasNextPage}
-                    hasPrevPage={pagination.hasPrevPage}
-                />
+                        currentPage={pagination.page}
+                        totalPages={pagination.totalPages}
+                        onPageChange={handlePageChange}
+                        hasNextPage={pagination.hasNextPage}
+                        hasPrevPage={pagination.hasPrevPage}
+                    />
                 </div>
             )}
         </Layout>
