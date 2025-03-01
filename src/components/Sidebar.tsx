@@ -1,67 +1,68 @@
-"use client"; // Ensure this is a client component
+'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Cookies from 'js-cookie';
+import { FC } from 'react';
 
-const Sidebar = () => {
+interface SidebarProps {
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const pathname = usePathname();
-  const isLoggedIn = !!Cookies.get('authToken'); // Check if the user is logged in
-
   const menuItems = [
-    {
-      title: 'Menu',
-      items: [
-        { path: '/dashboard', label: 'Dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-        { path: '/users', label: 'Users', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-      ]
-    },
+    { path: '/dashboard', label: 'Dashboard', icon: 'M3 10h11M9 21V3m11 11h-6' },  // Dashboard icon
+    { path: '/users', label: 'Users', icon: 'M17 20h5v-1a7 7 0 00-14 0v1h5m-7 0H2v-1a7 7 0 0114 0v1h-5' },  // Users icon
   ];
 
   return (
-    <aside  className="h-screen bg-white border-r border-gray-200 overflow-hidden">
-      <div className="flex items-center h-16 px-4 border-b border-gray-200">
-        <div className="flex items-center">
-          <svg className="h-8 w-8 text-[#7F56D9]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+    <aside
+      className={`fixed inset-y-0 z-10 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none ${!isSidebarOpen ? '-translate-x-full lg:translate-x-0 lg:w-20' : ''
+        }`}
+    >
+      {/* sidebar header */}
+      <div className={`flex items-center justify-between flex-shrink-0 p-2 ${!isSidebarOpen ? 'lg:justify-center' : ''}`}>
+        <span className="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
+          K<span className={!isSidebarOpen ? 'lg:hidden' : ''}>-WD</span>
+        </span>
+        <button onClick={toggleSidebar} className="p-2 rounded-md lg:hidden">
+          <svg
+            className="w-6 h-6 text-gray-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
-          <span className="ml-3 text-xl font-semibold text-gray-900">CRM</span>
-        </div>
+        </button>
       </div>
-      <div className="overflow-y-auto h-[calc(100vh-4rem)] p-4">
-      {menuItems.map((section, idx) => (
-          <div key={idx} className="mb-6">
-            <h2 className="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              {section.title}
-            </h2>
-            <nav className="space-y-1">
-              {section.items.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={`flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${pathname === item.path
-                      ? 'bg-[#F9F5FF] text-[#7F56D9]'
-                      : 'text-gray-700 hover:bg-gray-50'
-                    }`}
-                >
-                  <svg
-                    className={`h-5 w-5 ${pathname === item.path ? 'text-[#7F56D9]' : 'text-gray-500'}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-                  </svg>
-                  <span className="ml-3">{item.label}</span>
-                </Link>
-              ))}
-            </nav>
+
+      {/* Sidebar links */}
+      <nav className="flex-1 overflow-hidden hover:overflow-y-auto">
+        {menuItems.map((item) => item && (
+          <div key={item.path}> {/* Wrap Link and SVG in a parent div */}
+            <Link
+              href={item.path}
+              className={`flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100 ${pathname === item.path ? 'text-[#7F56D9]' : 'text-gray-500'} ${!isSidebarOpen ? 'justify-center' : ''
+                }`}
+            >
+              <svg
+                className={`w-6 h-6 ${pathname === item.path ? 'text-[#7F56D9]' : 'text-gray-500'}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
+              </svg>
+              <span className={!isSidebarOpen ? 'lg:hidden' : ''}>{item.label}</span>
+            </Link>
           </div>
         ))}
-      </div>
+      </nav>
     </aside>
   );
 };
 
-export default Sidebar; 
+export default Sidebar;

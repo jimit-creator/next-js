@@ -1,11 +1,13 @@
-import React from 'react';
+'use client';
 
-const Footer = () => {
+import { FC } from 'react';
+
+const Footer: FC = () => {
   return (
-    <footer>
-      <p>&copy; 2023 My Application</p>
+    <footer className="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
+      <div>K-WD &copy; 2020</div>
     </footer>
   );
 };
 
-export default Footer; 
+export default Footer;
