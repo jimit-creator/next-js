@@ -3,15 +3,9 @@ import { db } from '@/db';
 import { rooms } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
-type RouteContext = {
-  params: {
-    id: string;
-  };
-};
-
 export async function PUT(
-  request: NextRequest,
-  context: RouteContext
+  request: NextRequest,  
+  context: { params: { id: string } }
 ) {
   try {
     const body = await request.json();
@@ -44,7 +38,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  context: RouteContext
+  context: { params: { id: string } }
 ) {
   try {
     const roomId = parseInt(context.params.id);
