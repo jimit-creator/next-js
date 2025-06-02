@@ -164,8 +164,8 @@ export default function AdminDashboard() {
             </div>
             <p className="text-gray-600 mb-4">Manage room availability, bookings, and pricing</p>
             <div className="space-y-2">
-              <button className="w-full text-left px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg">View All Rooms</button>
-              <button className="w-full text-left px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg">Manage Bookings</button>
+              <Link href="/admin/rooms" className="block w-full text-left px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg">Manage Rooms</Link>
+              <button className="w-full text-left px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg">View Bookings</button>
               <button className="w-full text-left px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg">Update Pricing</button>
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function AdminDashboard() {
             </div>
             <p className="text-gray-600 mb-4">Manage menu items, categories, and orders</p>
             <div className="space-y-2">
-              <button className="w-full text-left px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg">Manage Menu</button>
+              <Link href="/admin/restaurant" className="block w-full text-left px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg">Manage Menu</Link>
               <button className="w-full text-left px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg">View Orders</button>
               <button className="w-full text-left px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg">Update Inventory</button>
             </div>
@@ -200,7 +200,7 @@ export default function AdminDashboard() {
             </div>
             <p className="text-gray-600 mb-4">Manage sweets inventory and orders</p>
             <div className="space-y-2">
-              <button className="w-full text-left px-4 py-2 text-orange-600 hover:bg-orange-50 rounded-lg">Manage Sweets</button>
+              <Link href="/admin/sweets" className="block w-full text-left px-4 py-2 text-orange-600 hover:bg-orange-50 rounded-lg">Manage Sweets</Link>
               <button className="w-full text-left px-4 py-2 text-orange-600 hover:bg-orange-50 rounded-lg">View Orders</button>
               <button className="w-full text-left px-4 py-2 text-orange-600 hover:bg-orange-50 rounded-lg">Update Stock</button>
             </div>
@@ -218,7 +218,7 @@ export default function AdminDashboard() {
             </div>
             <p className="text-gray-600 mb-4">Manage staff accounts and permissions</p>
             <div className="space-y-2">
-              <button className="w-full text-left px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg">View Staff</button>
+              <Link href="/admin/staff" className="block w-full text-left px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg">Manage Staff</Link>
               <button className="w-full text-left px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg">Add Staff</button>
               <button className="w-full text-left px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg">Manage Permissions</button>
             </div>
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
             </div>
             <p className="text-gray-600 mb-4">Create and manage discount coupons</p>
             <div className="space-y-2">
-              <button className="w-full text-left px-4 py-2 text-yellow-600 hover:bg-yellow-50 rounded-lg">View Coupons</button>
+              <Link href="/admin/coupons" className="block w-full text-left px-4 py-2 text-yellow-600 hover:bg-yellow-50 rounded-lg">Manage Coupons</Link>
               <button className="w-full text-left px-4 py-2 text-yellow-600 hover:bg-yellow-50 rounded-lg">Create Coupon</button>
               <button className="w-full text-left px-4 py-2 text-yellow-600 hover:bg-yellow-50 rounded-lg">Usage Reports</button>
             </div>
@@ -254,7 +254,7 @@ export default function AdminDashboard() {
             </div>
             <p className="text-gray-600 mb-4">View business intelligence reports</p>
             <div className="space-y-2">
-              <button className="w-full text-left px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg">Sales Reports</button>
+              <Link href="/admin/reports" className="block w-full text-left px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg">View Reports</Link>
               <button className="w-full text-left px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg">Occupancy Reports</button>
               <button className="w-full text-left px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg">Export Data</button>
             </div>
