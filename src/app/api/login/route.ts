@@ -20,12 +20,22 @@ export async function POST(request: Request): Promise<NextResponse> {
   });
 
   // Validate user credentials
-  if (!user || !(await verifyPassword(password, user.password))) {
+  if (!user || !user.password || !(await verifyPassword(password, user.password!))) {
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
   }
 
   // If authentication is successful, generate a JWT token
   const token = await generateToken({ id: user.id, username: user.username });
   // Return the token in the response
-  return NextResponse.json({ message: 'Login successful', token });
+  return NextResponse.json({ 
+    message: 'Login successful', 
+    token,
+    user: {
+      id: user.id,
+      username: user.username,
+      role: user.role,
+      name: user.name,
+      email: user.email
+    }
+  });
 }

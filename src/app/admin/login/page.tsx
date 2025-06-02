@@ -30,10 +30,13 @@ export default function AdminLoginPage() {
       if (response.ok) {
         // Store token and redirect based on role
         localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userRole', data.user.role);
+        localStorage.setItem('userName', data.user.name || data.user.username);
+        
         if (data.user.role === 'admin') {
           window.location.href = '/admin/dashboard';
         } else if (data.user.role === 'staff') {
-          window.location.href = '/staff/dashboard';
+          window.location.href = '/admin/dashboard'; // Use same dashboard for now
         } else {
           setError('Unauthorized access');
         }
