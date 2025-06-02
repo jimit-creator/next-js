@@ -20,6 +20,7 @@ const eslintConfig = [
 
       // Allow use of 'any' type
       "@typescript-eslint/no-explicit-any": "off",
+      "no-unescaped-entities": "off",
     },
   },
 ];
