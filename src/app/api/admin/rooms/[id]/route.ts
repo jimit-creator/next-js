@@ -5,12 +5,12 @@ import { eq } from 'drizzle-orm';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const body = await request.json();
     const { roomNumber, roomType, price, description, amenities, isAvailable } = body;
-    const roomId = parseInt(params.id);
+    const roomId = parseInt(context.params.id);
 
     const updatedRoom = await db
       .update(rooms)
@@ -38,10 +38,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const roomId = parseInt(params.id);
+    const roomId = parseInt(context.params.id);
 
     await db.delete(rooms).where(eq(rooms.id, roomId));
 
