@@ -48,10 +48,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const userId = parseInt(params.id);
+    const userId = parseInt(context.params.id);
 
     await db.delete(users).where(eq(users.id, userId));
 
