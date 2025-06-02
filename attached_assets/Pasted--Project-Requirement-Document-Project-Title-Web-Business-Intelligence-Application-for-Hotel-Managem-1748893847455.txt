@@ -1,0 +1,119 @@
+ Project Requirement Document
+Project Title: Web Business Intelligence Application for Hotel Management
+Client: Hotel Owner
+Prepared By: [Your Name]
+Date: May 31, 2025
+
+1.  Project Overview
+The goal is to develop an SEO-friendly web application for a hotel that enables users to:
+
+Book hotel rooms online.
+
+Order food from the restaurant section.
+
+Order sweets from a dedicated sweets section.
+
+Make secure online payments via Stripe or hotel QR code.
+
+Provide business intelligence analytics and a management portal for admins.
+
+2.  User Roles and Access Control
+Role	Access Permissions
+Admin	Full access: manage rooms, menus, staff, orders, discounts, payments, and reports.
+Staff	Can only view orders, update room/food/sweets availability (no access to reports).
+Customer	Browse website freely. Must authenticate with OTP (mobile) before ordering/booking.
+
+3.  Authentication
+For Customers:
+Signup/Login using mobile number + OTP.
+
+Optional fields: name, email, address (editable from profile).
+
+Login mandatory before booking/ordering.
+
+For Admin & Staff:
+Admin login via static credentials.
+
+Admin can create/delete staff logins (username + password).
+
+Separate login UI section for Admin/Staff on top header.
+
+4. ️ Room Booking Module
+Room Types: Premium, Deluxe, Suite (15 total rooms).
+
+Availability Check: Calendar-based UI with optional API-based extensibility.
+
+Booking Flow:
+
+Room type → date selection → availability check → book → payment via Stripe or QR.
+
+Room availability auto-updates after successful booking.
+
+Manual availability management possible from Staff Panel.
+
+Discount Coupons configurable by Admin.
+
+5. Restaurant Ordering Module
+Menu categorized (e.g., Starters, Main Course, Drinks, etc.).
+
+No item customization; fixed unit sizes (e.g., 250g Paneer Butter Masala).
+
+Users can order multiple units (e.g., 4×250g).
+
+Manual stock availability updated by Staff.
+
+6.  Sweets Ordering Module
+Separate sweets section with categorized listings (e.g., Dry Sweets, Wet Sweets).
+
+Quantity customization: 250g, 500g, 1kg, etc.
+
+Users can schedule delivery & provide remarks.
+
+7.  Order Details and Remarks
+Users can add remarks during food/sweets orders.
+
+If ordering for train delivery, they can add:
+
+Train Number / Train Name
+
+PNR Number
+
+Coach / Seat Info
+
+This helps in better delivery logistics.
+
+8.  Payment Integration
+Stripe integration for secure one-time payments.
+
+Hotel QR Code visible for alternate payment.
+
+Admin can manually mark payments as "Paid" if done via QR (Staff cannot).
+
+Payment status updates are visible in Admin dashboard.
+
+9.  Business Intelligence & Reporting
+Accessible only to Admin:
+
+Sales Reports (Daily / Weekly / Monthly).
+
+Occupancy Rate for rooms.
+
+Top-selling food items / sweets.
+
+Downloadable/exportable reports (CSV/Excel).
+
+10. ️ Admin & Staff Portal Features
+Feature	Admin	Staff
+View Orders	Yes Yes
+Update Inventory (Rooms, Menu)	Yes Yes
+Payment Status Control	Yes No
+View Reports	Yes No
+Manage Staff Accounts	Yes No
+Manage Discount Coupons	Yes No
+
+12.  Optional Future Enhancements
+Live order tracking with status.
+
+Push notifications via SMS or WhatsApp.
+
+Mobile app using React Native or Expo.
