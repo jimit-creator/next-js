@@ -118,30 +118,37 @@ export default function RestaurantPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-green-900 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 -right-20 w-72 h-72 bg-emerald-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-green-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
+      </div>
+
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-4">
+      <header className="relative z-10 backdrop-blur-md bg-white/10 border-b border-white/20">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">H</span>
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-lg">R</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">Grand Hotel Restaurant</span>
+              <span className="text-2xl font-bold bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">Restaurant</span>
             </Link>
             <nav className="flex space-x-6 items-center">
-              <Link href="/rooms" className="text-gray-600 hover:text-gray-900">Rooms</Link>
-              <Link href="/sweets" className="text-gray-600 hover:text-gray-900">Sweets</Link>
+              <Link href="/rooms" className="text-white/80 hover:text-white transition-colors duration-300">Rooms</Link>
+              <Link href="/sweets" className="text-white/80 hover:text-white transition-colors duration-300">Sweets</Link>
               <button
                 onClick={() => setShowCart(!showCart)}
-                className="relative bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center space-x-2"
+                className="relative bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-2 rounded-full hover:from-emerald-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 2.5M7 13l2.5 2.5" />
                 </svg>
                 <span>Cart</span>
                 {cart.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center shadow-lg">
                     {cart.reduce((sum, item) => sum + item.quantity, 0)}
                   </span>
                 )}
@@ -151,25 +158,33 @@ export default function RestaurantPage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="relative z-10 container mx-auto px-6 py-12">
         {/* Page Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Restaurant</h1>
-          <p className="text-lg text-gray-600">Delicious cuisine made fresh daily</p>
+        <div className="text-center mb-16">
+          <h1 className="text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-white via-emerald-100 to-green-200 bg-clip-text text-transparent">
+              Gourmet
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 bg-clip-text text-transparent">
+              Dining Experience
+            </span>
+          </h1>
+          <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">Savor exquisite cuisine crafted by our master chefs using the finest fresh ingredients</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Categories Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Categories</h2>
-              <div className="space-y-2">
+            <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-3xl p-8 sticky top-4 shadow-2xl">
+              <h2 className="text-2xl font-semibold text-white mb-6">Categories</h2>
+              <div className="space-y-3">
                 <button
                   onClick={() => setSelectedCategory(null)}
-                  className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                  className={`w-full text-left px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 ${
                     selectedCategory === null
-                      ? 'bg-green-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg'
+                      : 'backdrop-blur-sm bg-white/10 text-white/80 hover:bg-white/20 hover:text-white'
                   }`}
                 >
                   All Items
@@ -178,10 +193,10 @@ export default function RestaurantPage() {
                   <button
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                    className={`w-full text-left px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 ${
                       selectedCategory === category.id
-                        ? 'bg-green-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg'
+                        : 'backdrop-blur-sm bg-white/10 text-white/80 hover:bg-white/20 hover:text-white'
                     }`}
                   >
                     {category.name}
