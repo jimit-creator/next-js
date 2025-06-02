@@ -8,6 +8,13 @@
       "when": 1740755204302,
       "tag": "0000_mean_kingpin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748894081589,
+      "tag": "0001_true_arachne",
+      "breakpoints": true
     }
   ]
 }
