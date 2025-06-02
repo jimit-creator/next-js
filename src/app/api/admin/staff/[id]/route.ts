@@ -6,12 +6,13 @@ import { hash } from '@/utils/auth';
 
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const body = await request.json();
     const { username, password, name, email, mobile, role, isActive } = body;
-    const userId = parseInt(context.params.id);
+    const resolvedParams = await params;
+    const userId = parseInt(resolvedParams.id);
 
     const updateData: any = {
       username,
@@ -48,10 +49,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = parseInt(context.params.id);
+    const resolvedParams = await params;
+    const userId = parseInt(resolvedParams.id);
 
     await db.delete(users).where(eq(users.id, userId));
 
