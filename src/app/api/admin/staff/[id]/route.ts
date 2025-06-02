@@ -6,12 +6,12 @@ import { hash } from '@/utils/auth';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const body = await request.json();
     const { username, password, name, email, mobile, role, isActive } = body;
-    const userId = parseInt(params.id);
+    const userId = parseInt(context.params.id);
 
     const updateData: any = {
       username,
